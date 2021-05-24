@@ -1,0 +1,174 @@
+swagger: "2.0"
+info:
+  title: Swagger Ruang Opini
+  description: Serverless APIs with API Gateway
+  version: 1.0.0
+tags:
+- name: users
+  description: Everything about users
+- name: discussions
+  description: Everything about discussions
+- name: posts
+  description: Everything about posts
+- name: comments
+  description: Everything about comments
+- name: policies
+  description: Everything about policies
+schemes:
+- https
+- http
+produces:
+- application/json
+#host: trygetinput-gateway-2x4x0vow.uc.gateway.dev
+paths:
+  /Users:
+    get:
+      tags:
+      - users
+      description: Return user detail by user ID
+      operationId: getUser
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetUser
+        protocol: h2
+      parameters:
+      - in: query
+        name: userId
+        description: User ID to return
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /Discussions/All:
+    get:
+      tags:
+      - discussions
+      description: Returns all discussions
+      operationId: getDiscussion
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetDiscussions
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /Discussions:
+    get:
+      tags:
+      - discussions
+      - posts
+      description: Returns discussion by discussion ID, see discussion details inc all posts in a discussion
+      operationId: getDiscussionPosts
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetDiscussionPosts
+        protocol: h2
+      parameters:
+      - in: query
+        name: discussionId
+        description: Discussion ID to return
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /Posts:
+    get:
+      tags:
+      - posts
+      operationId: getPost
+      description: Returns post by post ID, see post details inc all comments in a post
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetPost
+        protocol: h2
+      parameters:
+      - in: query
+        name: postId
+        description: Post ID to return
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /Comments:
+    get:
+      tags:
+      - comments
+      operationId: getComment
+      description: Returns comment by comment ID
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetComment
+        protocol: h2
+      parameters:
+      - in: query
+        name: commentId
+        description: Comment ID to return
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /AllPolicyCategories:
+    get:
+      tags:
+      - policies
+      operationId: getAllPolicyCategory
+      description: Returns all policy categories
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetAllPolicyCategory
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /PolicyByType:
+    get:
+      tags:
+      - policies
+      operationId: getPolicyByType
+      description: Returns all policy by type
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetPolicyByType
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /PolicyByCategory:
+    get:
+      tags:
+      - policies
+      operationId: getPolicyByCategory
+      description: Returns all policy by category
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetPolicyByCategory
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /DocumentPolicy:
+    get:
+      tags:
+      - policies
+      operationId: getDocumentPolicy
+      description: Returns document policy
+      x-google-backend:
+        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetDocumentPolicy
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
