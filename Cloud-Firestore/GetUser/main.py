@@ -1,7 +1,7 @@
 from flask import jsonify
 from google.cloud import firestore
 
-def getInput(request):
+def getUser(request):
     try:
         if request.args and 'userId' in request.args:
             userId = request.args.get('userId')
