@@ -41,6 +41,8 @@ paths:
           description: successful operation
         '404':
           description: Data is not found
+      security:
+      - api_key: []
   /Discussions/All:
     get:
       tags:
@@ -172,3 +174,8 @@ paths:
           description: successful operation
         '404':
           description: Data is not found
+securityDefinitions:
+ api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
