@@ -28,7 +28,7 @@ paths:
       description: Return user detail by user ID
       operationId: getUser
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetUser
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetUser 
         protocol: h2
       parameters:
       - in: query
@@ -48,7 +48,7 @@ paths:
       description: Returns all discussions
       operationId: getDiscussion
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetDiscussions
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetDiscussions
         protocol: h2
       responses:
         '200':
@@ -63,7 +63,7 @@ paths:
       description: Returns discussion by discussion ID, see discussion details inc all posts in a discussion
       operationId: getDiscussionPosts
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetDiscussionPosts
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetDiscussionPosts
         protocol: h2
       parameters:
       - in: query
@@ -83,7 +83,7 @@ paths:
       operationId: getPost
       description: Returns post by post ID, see post details inc all comments in a post
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetPost
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPost
         protocol: h2
       parameters:
       - in: query
@@ -103,7 +103,7 @@ paths:
       operationId: getComment
       description: Returns comment by comment ID
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetComment
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetComment
         protocol: h2
       parameters:
       - in: query
@@ -123,7 +123,7 @@ paths:
       operationId: getAllPolicyCategory
       description: Returns all policy categories
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetAllPolicyCategory
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetAllPolicyCategory
         protocol: h2
       responses:
         '200':
@@ -137,7 +137,7 @@ paths:
       operationId: getPolicyByType
       description: Returns all policy by type
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetPolicyByType
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPolicyByType
         protocol: h2
       responses:
         '200':
@@ -151,7 +151,7 @@ paths:
       operationId: getPolicyByCategory
       description: Returns all policy by category
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetPolicyByCategory
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPolicyByCategory
         protocol: h2
       responses:
         '200':
@@ -165,7 +165,7 @@ paths:
       operationId: getDocumentPolicy
       description: Returns document policy
       x-google-backend:
-        address: https://us-central1-capstone-ruang-opini.cloudfunctions.net/GetDocumentPolicy
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetDocumentPolicy
         protocol: h2
       responses:
         '200':
