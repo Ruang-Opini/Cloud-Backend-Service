@@ -50,13 +50,15 @@ paths:
       description: Return all users
       operationId: getAllUser
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetAllUsers 
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetAllUsers
         protocol: h2
       responses:
         '200':
           description: successful operation
         '404':
           description: Data is not found
+      security:
+      - api_key: []
   /UserPhoto:
     get:
       tags:
@@ -66,12 +68,6 @@ paths:
       x-google-backend:
         address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPhotoUrl 
         protocol: h2
-      parameters:
-      - in: query
-        name: filename
-        description: photoUrl hash to return
-        required: true
-        type: string
       responses:
         '200':
           description: successful operation
