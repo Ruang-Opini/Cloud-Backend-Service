@@ -43,6 +43,40 @@ paths:
           description: Data is not found
       security:
       - api_key: []
+  /AllUsers:
+    get:
+      tags:
+      - users
+      description: Return all users
+      operationId: getAllUser
+      x-google-backend:
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetAllUsers 
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /UserPhoto:
+    get:
+      tags:
+      - users
+      description: Return user photo
+      operationId: getUserPhoto
+      x-google-backend:
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPhotoUrl 
+        protocol: h2
+      parameters:
+      - in: query
+        name: filename
+        description: photoUrl hash to return
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
   /Discussions/All:
     get:
       tags:
@@ -91,6 +125,26 @@ paths:
       - in: query
         name: postId
         description: Post ID to return
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /PostsbyUser:
+    get:
+      tags:
+      - posts
+      operationId: getPostbyUserId
+      description: Returns post by specific user, then count the amounts
+      x-google-backend:
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPostbyUserId
+        protocol: h2
+      parameters:
+      - in: query
+        name: userId
+        description: Post by specific user to return
         required: true
         type: string
       responses:
