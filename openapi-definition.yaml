@@ -73,36 +73,29 @@ paths:
           description: successful operation
         '404':
           description: Data is not found
-  /Discussions/All:
+  /Discussions/Latest:
     get:
       tags:
       - discussions
-      description: Returns all discussions
-      operationId: getDiscussion
+      description: Returns latest discussions
+      operationId: getLatestDiscussion
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetDiscussions
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetLatestDiscussions
         protocol: h2
       responses:
         '200':
           description: successful operation
         '404':
           description: Data is not found
-  /Discussions:
+  /Discussions/Trending:
     get:
       tags:
       - discussions
-      - posts
-      description: Returns discussion by discussion ID, see discussion details inc all posts in a discussion
-      operationId: getDiscussionPosts
+      description: Returns trending discussions
+      operationId: getTrendingDiscussions
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetDiscussionPosts
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetTrendingDiscussions
         protocol: h2
-      parameters:
-      - in: query
-        name: discussionId
-        description: Discussion ID to return
-        required: true
-        type: string
       responses:
         '200':
           description: successful operation
