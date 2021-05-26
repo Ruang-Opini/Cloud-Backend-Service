@@ -128,7 +128,7 @@ paths:
       operationId: getPostbyUserId
       description: Returns post by specific user, then count the amounts
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPostbyUserId
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPostByUserId
         protocol: h2
       parameters:
       - in: query
