@@ -12,7 +12,8 @@ def getDoc(URL):
     center = result[0].find_all('a')
     jsonData = {}
     jsonData['policy'] = []
-    jsonData['policy'].append(center[0]['href'])
+    for doc in center:
+        jsonData['policy'].append(doc['href'])
     return json.loads(json.dumps(jsonData))
 
 def getDocumentPolicy(request):
