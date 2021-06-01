@@ -19,7 +19,6 @@ schemes:
 - http
 produces:
 - application/json
-#host: trygetinput-gateway-2x4x0vow.uc.gateway.dev
 paths:
   /Users:
     get:
@@ -59,20 +58,6 @@ paths:
           description: Data is not found
       security:
       - api_key: []
-  /UserPhoto:
-    get:
-      tags:
-      - users
-      description: Return user photo
-      operationId: getUserPhoto
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPhotoUrl 
-        protocol: h2
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
   /Discussions/Latest:
     get:
       tags:
@@ -87,46 +72,12 @@ paths:
           description: successful operation
         '404':
           description: Data is not found
-  /Discussions/Trending:
-    get:
-      tags:
-      - discussions
-      description: Returns trending discussions
-      operationId: getTrendingDiscussions
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetTrendingDiscussions
-        protocol: h2
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
-  /Posts:
-    get:
-      tags:
-      - posts
-      operationId: getPost
-      description: Returns post by post ID, see post details inc all comments in a post
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPost
-        protocol: h2
-      parameters:
-      - in: query
-        name: postId
-        description: Post ID to return
-        required: true
-        type: string
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
   /PostsbyUser:
     get:
       tags:
       - posts
       operationId: getPostbyUserId
-      description: Returns post by specific user, then count the amounts
+      description: Returns all posts by specific user
       x-google-backend:
         address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPostByUserId
         protocol: h2
@@ -134,26 +85,6 @@ paths:
       - in: query
         name: userId
         description: Post by specific user to return
-        required: true
-        type: string
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
-  /Comments:
-    get:
-      tags:
-      - comments
-      operationId: getComment
-      description: Returns comment by comment ID
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetComment
-        protocol: h2
-      parameters:
-      - in: query
-        name: commentId
-        description: Comment ID to return
         required: true
         type: string
       responses:
