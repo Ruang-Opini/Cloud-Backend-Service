@@ -1,0 +1,4 @@
+tensorflow==2.5.0
+google-resumable-media==0.6.0
+google-cloud-storage==1.30.0
+tweepy==3.10.0
