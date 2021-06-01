@@ -1,0 +1,47 @@
+swagger: "2.0"
+info:
+  title: Sentiment Analysis
+  description: Serverless APIs with API Gateway
+  version: 1.0.0
+schemes:
+- https
+- http
+produces:
+- application/json
+paths:
+  /Trending:
+    get:
+      operationId: getPolicyTrending
+      description: Returns trendings related to policy
+      x-google-backend:
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/TrendingPolicy
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /Responses:
+    get:
+      operationId: getUserResponse
+      description: Returns percentage of user response by trending
+      x-google-backend:
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/UserResponses
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
+  /Buzzer:
+    get:
+      operationId: getBuzzer
+      description: Returns buzzers percentage by trending
+      x-google-backend:
+        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/BuzzerDetection
+        protocol: h2
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Data is not found
