@@ -1,6 +1,5 @@
 import tweepy as tw
 from tweepy import OAuthHandler
-import os
 import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import load_model
@@ -49,55 +48,46 @@ def download_pkl_model_file():
 # Main entry point for the cloud function
 def offensive_sentiment(request):
     try: 
+        if request.args and 'trending' in request.args:
+            trending = request.args.get('trending')
+        else:
+            return 'Precondition Failed', 412
+            
         # Use the global model variable 
         global model
 
         if not model:
             download_pkl_model_file()
-            policy_tokenizer = pickle.load(open("/tmp/policy_tokenizer.pickle", 'rb'))
-            policy_model = load_model("/tmp/policy_model.h5")
             sentiment_tokenizer = pickle.load(open("/tmp/tokenizer_sentiment.pickle", 'rb'))
             sentiment_model = load_model("/tmp/model_sentiment.h5")
-        
-        def Encoding_Policy(text):
-            sequence = policy_tokenizer.texts_to_sequences([text])
-            paded = pad_sequences(sequence, padding = 'pre', truncating='post', maxlen=125)
-            return paded
         
         def Encoding_Sentiment(text):
             sequence = sentiment_tokenizer.texts_to_sequences([text])
             paded = pad_sequences(sequence, padding = 'pre', truncating='post', maxlen=125)
             return paded
-
-        def TextProcessing_Policy(text, model):
-            sequence = Encoding_Policy(text)
-            result = model.predict(sequence)
-            return result[0][0] * 100
         
         def TextProcessing_Sentiment(text, model):
             sequence = Encoding_Sentiment(text)
             result = model.predict(sequence)
             return result[0][0] * 100
 
-        INDONESIA_WOE_ID = 23424846
-        indonesia_trends = api.trends_place(INDONESIA_WOE_ID)
-        
         tanggapan_list = {}
-        tanggapan_list["tanggapan"] = []
-        tanggapanDict = {}
-        tanggapanDict["positif"] = []
-        tanggapanDict["negatif"] = []
-        for trends in indonesia_trends[0]['trends']:
-            if TextProcessing_Policy(str(trends["name"]), policy_model) > 50:
-                search = [str(trends["name"])]
-                tweets = tw.Cursor(api.search, q=search, lang="in").items(5)
-                for tweet in tweets:
-                    if (not tweet.retweeted) and ('RT @' not in tweet.text):
-                        if TextProcessing_Sentiment(str(tweet.text), sentiment_model) > 50:
-                            tanggapanDict["positif"].append(tweet.text)
-                        else:
-                            tanggapanDict["negatif"].append(tweet.text)
-        return len(tanggapanDict["positif"].append(tweet.text))/(tanggapanDict["positif"].append(tweet.text) + tanggapanDict["negatif"].append(tweet.text))
+        tanggapan_list["tanggapan"] = {}
+        POS = 0
+        NEG = 0
+        search = [trending]
+        tweets = tw.Cursor(api.search, q=search, lang="in").items(100)
+        
+        for tweet in tweets:
+            if (not tweet.retweeted) and ('RT @' not in tweet.text):
+                if TextProcessing_Sentiment(tweet.text, sentiment_model) > 50: POS+=1
+                else : NEG+=1
+        
+        tanggapan_list["tanggapan"]["positif"] = POS
+        tanggapan_list["tanggapan"]["negatif"] = NEG
+
+        return json.loads(json.dumps(tanggapan_list))
+
     except Exception as e:
         return e
 
