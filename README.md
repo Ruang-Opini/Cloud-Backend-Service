@@ -10,6 +10,14 @@ Following Components are used for each purposes.
   2. GET document policy from a website
 * API Gateway: Manage all the API calls to serverless backends (in this case Cloud Functions)
 
+This is how the architecture look a like.
+
+Architecture: Serverless API with API Gateway for Running Machine Learning Models
+![Sentiment Analysis](https://user-images.githubusercontent.com/71552937/121258345-fc850800-c8d8-11eb-828c-266844987587.png)
+
+Architecture: Serverless API with API Gateway for Getting Policies On Website
+![Getting Policies](https://user-images.githubusercontent.com/71552937/121258376-0444ac80-c8d9-11eb-9262-4551bed78ad6.png)
+
 # Run Machine Learning Models on Google Cloud Platform
 These following steps guide you how to run ML models using Cloud Functions.
 ## [1] Store ML Models on Cloud Storage
@@ -219,6 +227,7 @@ gcloud beta api-gateway gateways describe policy-gateway \
 --location=asia-east1 --project=$PROJECT_ID
 ```    
 9. Use the defaultHostname as the gateway link.
+
 The gateway would look like this: trending-gateway-{HASH}.uc.gateway.dev/Trending
 
 or if using query: buzzer-gateway-{HASH}.uc.gateway.dev/Buzzer?trending={input the trending here}
