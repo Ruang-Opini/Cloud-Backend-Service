@@ -4,14 +4,6 @@ info:
   description: Serverless APIs with API Gateway
   version: 1.0.0
 tags:
-- name: users
-  description: Everything about users
-- name: discussions
-  description: Everything about discussions
-- name: posts
-  description: Everything about posts
-- name: comments
-  description: Everything about comments
 - name: policies
   description: Everything about policies
 schemes:
@@ -20,78 +12,6 @@ schemes:
 produces:
 - application/json
 paths:
-  /Users:
-    get:
-      tags:
-      - users
-      description: Return user detail by user ID
-      operationId: getUser
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetUser 
-        protocol: h2
-      parameters:
-      - in: query
-        name: userId
-        description: User ID to return
-        required: true
-        type: string
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
-      security:
-      - api_key: []
-  /AllUsers:
-    get:
-      tags:
-      - users
-      description: Return all users
-      operationId: getAllUser
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetAllUsers
-        protocol: h2
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
-      security:
-      - api_key: []
-  /Discussions/Latest:
-    get:
-      tags:
-      - discussions
-      description: Returns latest discussions
-      operationId: getLatestDiscussion
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetLatestDiscussions
-        protocol: h2
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
-  /PostsbyUser:
-    get:
-      tags:
-      - posts
-      operationId: getPostbyUserId
-      description: Returns all posts by specific user
-      x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPostByUserId
-        protocol: h2
-      parameters:
-      - in: query
-        name: userId
-        description: Post by specific user to return
-        required: true
-        type: string
-      responses:
-        '200':
-          description: successful operation
-        '404':
-          description: Data is not found
   /AllPolicyCategories:
     get:
       tags:
@@ -99,7 +19,7 @@ paths:
       operationId: getAllPolicyCategory
       description: Returns all policy categories
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetAllPolicyCategory
+        address:  # Replace with Cloud Function trigger URL to get all policy category
         protocol: h2
       responses:
         '200':
@@ -113,7 +33,7 @@ paths:
       operationId: getPolicyByType
       description: Returns all policy by type
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPolicyByType
+        address: # Replace with Cloud Function trigger URL to get policy by type
         protocol: h2
       responses:
         '200':
@@ -127,7 +47,7 @@ paths:
       operationId: getPolicyByCategory
       description: Returns all policy by category
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetPolicyByCategory
+        address: # Replace with Cloud Function trigger URL to get policy by category
         protocol: h2
       responses:
         '200':
@@ -141,15 +61,10 @@ paths:
       operationId: getDocumentPolicy
       description: Returns document policy
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/GetDocumentPolicy
+        address: # Replace with Cloud Function trigger URL to get document policies
         protocol: h2
       responses:
         '200':
           description: successful operation
         '404':
           description: Data is not found
-securityDefinitions:
- api_key:
-    type: "apiKey"
-    name: "key"
-    in: "query"

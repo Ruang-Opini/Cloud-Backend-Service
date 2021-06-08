@@ -14,7 +14,7 @@ paths:
       operationId: getPolicyTrending
       description: Returns trendings related to policy
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/TrendingPolicy
+        address: # Replace with Cloud Function trigger URL to get all policy trending
         protocol: h2
       responses:
         '200':
@@ -26,7 +26,7 @@ paths:
       operationId: getUserResponse
       description: Returns percentage of user response by trending
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/UserResponses
+        address: # Replace with Cloud Function trigger URL to get tweet sentiment result by trending
         protocol: h2
       responses:
         '200':
@@ -38,7 +38,7 @@ paths:
       operationId: getBuzzer
       description: Returns buzzers percentage by trending
       x-google-backend:
-        address: https://asia-southeast2-capstone-ruang-opini.cloudfunctions.net/BuzzerDetection
+        address: # Replace with Cloud Function trigger URL to get buzzer detection result by trending
         protocol: h2
       responses:
         '200':
