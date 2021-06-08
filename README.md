@@ -256,4 +256,4 @@ Ex: if you made change in openapi-sentiment.yaml, then you should redeploy the c
     --api=your-sentiment-api-name --api-config=your-new-sentiment-config \
     --location=us-central1 --project=$PROJECT_ID
     
-### Last, the gateway links then used by Android-client for getting the results and datas.
+### Last, the gateway links then used by Android app for getting the results and datas.
