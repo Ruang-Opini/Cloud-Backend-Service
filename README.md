@@ -244,9 +244,9 @@ gcloud functions add-iam-policy-binding BuzzerDetection \
 --project $PROJECT_ID
 ```
 
-## Redeploy if there's change in config yaml file
+## Redeploy if there's any change in config file
 
-Example, if you made change in openapi-sentiment.yaml, then you should redeploy the config and the gateway linked to the config.
+Ex: if you made change in openapi-sentiment.yaml, then you should redeploy the config and the gateway linked to the config.
 
     gcloud beta api-gateway api-configs create your-new-sentiment-config \
     --api=your-sentiment-api-name --openapi-spec="/{path}/openapi-sentiment.yaml" \
